@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; background: #f4f4f4; }
+        .slider-container { position: relative; width: 80%; max-width: 600px; overflow: hidden; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        .slides { display: flex; transition: transform 0.5s ease-in-out; }
+        .slides img { width: 100%; height: auto; }
+        .prev, .next { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0, 0, 0, 0.5); color: white; border: none; padding: 10px; cursor: pointer; }
+        .prev { left: 10px; }
+        .next { right: 10px; }
+    </style>
+</head>
+<body>
+    <div class="slider-container">
+        <div class="slides">
+            <img src="image1.jpg" alt="Image 1">
+            <img src="image2.jpg" alt="Image 2">
+            <img src="image3.jpg" alt="Image 3">
+        </div>
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
+    </div>
+    
+    <script>
+        let index = 0;
+        const slides = document.querySelector('.slides');
+        const images = document.querySelectorAll('.slides img');
+        const totalSlides = images.length;
+
+        document.querySelector('.next').addEventListener('click', () => moveSlide(1));
+        document.querySelector('.prev').addEventListener('click', () => moveSlide(-1));
+
+        function moveSlide(step) {
+            index = (index + step + totalSlides) % totalSlides;
+            slides.style.transform = `translateX(${-index * 100}%)`;
+        }
+
+        setInterval(() => moveSlide(1), 3000); // Auto-slide every 3 seconds
+    </script>
+</body>
+</html>
