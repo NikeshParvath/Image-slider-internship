@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; background: #f4f4f4; }
+        .slider-container { position: relative; width: 80%; max-width: 600px; overflow: hidden; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        .slides { display: flex; transition: transform 0.5s ease-in-out; }
+        .slides img { width: 100%; height: auto; }
+        .prev, .next { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0, 0, 0, 0.5); color: white; border: none; padding: 10px; cursor: pointer; }
+        .prev { left: 10px; }
+        .next { right: 10px; }
+    </style>
+</head>
+<body>
+    <div class="slider-container">
+        <div class="slides">
+            <img src="https://images.pexels.com/photos/371633/pexels-photo-371633.jpeg?cs=srgb&dl=clouds-country-daylight-371633.jpg&fm=jpg" alt="Image 1" width="500">
+            <img src="https://images.pexels.com/photos/247478/pexels-photo-247478.jpeg?cs=srgb&dl=clouds-cloudy-conifers-247478.jpg&fm=jpg" alt="Image 2" width="500">
+            <img src="https://images.squarespace-cdn.com/content/v1/54a4656fe4b037e9babd6ec9/1525669925757-IR2EG4NQ7B7SCU776P1W/ke17ZwdGBToddI8pDm48kHH9S2ID7_bpupQnTdrPcoF7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0nQwvinDXPV4EYh2MRzm-RRB5rUELEv7EY2n0AZOrEupxpSyqbqKSgmzcCPWV5WMiQ/Blog+images-17.jpg" alt="Image 3" width="500">
+        </div>
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
+    </div>
+    
+    <script>
+        let index = 0;
+        const slides = document.querySelector('.slides');
+        const images = document.querySelectorAll('.slides img');
+        const totalSlides = images.length;
+
+        document.querySelector('.next').addEventListener('click', () => moveSlide(1));
+        document.querySelector('.prev').addEventListener('click', () => moveSlide(-1));
+
+        function moveSlide(step) {
+            index = (index + step + totalSlides) % totalSlides;
+            slides.style.transform = `translateX(${-index * 100}%)`;
+        }
+
+        setInterval(() => moveSlide(1), 3000); // Auto-slide every 3 seconds
+    </script>
+</body>
+</html>
