@@ -1,0 +1,8 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { display: flex; justify-content: center; align-items: center; height: 100vh; background: #f4f4f4; }
+.slider-container { position: relative; width: 80%; max-width: 600px; overflow: hidden; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+.slides { display: flex; transition: transform 0.5s ease-in-out; }
+.slides img { width: 100%; height: auto; }
+.prev, .next { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0, 0, 0, 0.5); color: white; border: none; padding: 10px; cursor: pointer; }
+.prev { left: 10px; }
+.next { right: 10px; }
